@@ -1,10 +1,33 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-import './index.css'
-import App from './App.jsx'
+import React, { lazy, Suspense } from "react";
+import ReactDOM from "react-dom/client";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import App from "./App";
+import "./index.css";
+import { weatherLoader } from "./routes/weatherLoader";
 
-createRoot(document.getElementById('root')).render(
-  <StrictMode>
-    <App />
-  </StrictMode>,
-)
+const Login = lazy(() => import("./routes/Login"));
+const Weather = lazy(() => import("./routes/Weather"));
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <App />,
+  },
+  {
+    path: "/login",
+    element: <Login />,
+  },
+  {
+    path: "/weather",
+    element: <Weather />,
+    // loader: weatherLoader,
+  },
+]);
+
+ReactDOM.createRoot(document.getElementById("root")).render(
+  <React.StrictMode>
+    <Suspense fallback={<div>Loading...</div>}>
+      <RouterProvider router={router} />
+    </Suspense>
+  </React.StrictMode>
+);
