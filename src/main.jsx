@@ -1,7 +1,6 @@
 import React, { lazy, Suspense } from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import App from "./App";
 import "./index.css";
 import { weatherLoader } from "./routes/weatherLoader";
 
@@ -11,16 +10,12 @@ const Weather = lazy(() => import("./routes/Weather"));
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <App />,
-  },
-  {
-    path: "/login",
     element: <Login />,
   },
   {
     path: "/weather",
     element: <Weather />,
-    // loader: weatherLoader,
+    loader: weatherLoader,
   },
 ]);
 

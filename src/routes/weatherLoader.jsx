@@ -4,7 +4,7 @@ export const weatherLoader = () => {
   console.log("Loader executed");
   const authToken = localStorage.getItem("authToken");
   if (!authToken) {
-    return redirect("/login");
+    return redirect("/");
   }
   return null;
 };

@@ -18,6 +18,7 @@ const Weather = () => {
           },
         }
       );
+      console.log(response.data);
       setWeatherData(response.data);
     } catch (err) {
       setError("Failed to fetch weather data");
