@@ -4,6 +4,6 @@ Make sure to use a Bearer Token authentication for all Api requests to the backe
 
 Store all environment-specific context variables in .env files.
 
-Use lazy to import the components and the loader functions.
+Use lazy to import the components and the loader functions in the main.jsx file.
 
 I am using pnpm as a package manager.
