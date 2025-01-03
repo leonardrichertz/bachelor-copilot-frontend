@@ -51,8 +51,6 @@ const SavedLocations = ({ onSelectLocation, setLocation }) => {
     }
   };
 
-  console.log(locations);
-
   return (
     <Box>
       <h2>Saved Locations</h2>

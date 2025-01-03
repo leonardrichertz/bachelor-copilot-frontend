@@ -33,10 +33,12 @@ const Weather = () => {
           },
         }
       );
-      console.log(response.data);
       setWeatherData(response.data);
       setLocation({ lat, lon });
     } catch (err) {
+      toast.error(
+        err.response?.data?.message || "Failed to fetch weather data"
+      );
       setError("Failed to fetch weather data");
     }
   };
@@ -53,6 +55,7 @@ const Weather = () => {
         }
       );
     } else {
+      toast.error("Geolocation is not supported by this browser");
       setError("Geolocation is not supported by this browser");
     }
   };
@@ -60,13 +63,18 @@ const Weather = () => {
   const saveLocation = async (location) => {
     try {
       const authToken = localStorage.getItem("authToken");
-      await axios.post(`${import.meta.env.VITE_API_URL}/location`, location, {
-        headers: {
-          Authorization: `Bearer ${authToken}`,
-        },
-      });
+      const response = await axios.post(
+        `${import.meta.env.VITE_API_URL}/location`,
+        location,
+        {
+          headers: {
+            Authorization: `Bearer ${authToken}`,
+          },
+        }
+      );
       toast.success("Location saved successfully!");
     } catch (err) {
+      toast.error(err.response?.data?.message || "Failed to save location");
       toast.error("Failed to save location");
     }
   };
@@ -105,8 +113,6 @@ const Weather = () => {
     (forecast) => forecast.temp.day
   );
   const humidityData = weatherData?.daily.map((forecast) => forecast.humidity);
-
-  console.log(location);
 
   return (
     <Box sx={{ maxWidth: 600, mx: "auto", mt: 5, p: 3, boxShadow: 3 }}>
