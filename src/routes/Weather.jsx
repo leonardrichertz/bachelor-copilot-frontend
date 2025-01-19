@@ -115,7 +115,7 @@ const Weather = () => {
   const humidityData = weatherData?.daily.map((forecast) => forecast.humidity);
 
   return (
-    <Box sx={{ maxWidth: 600, mx: "auto", mt: 5, p: 3, boxShadow: 3 }}>
+    <Box sx={{ maxWidth: 600, mx: "auto", mt: 5, p: 3, boxShadow: 3, backgroundColor: "white", color: "black" }}>
       <Typography variant="h4" component="h2" gutterBottom>
         Weather Page
       </Typography>

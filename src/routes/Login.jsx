@@ -61,6 +61,8 @@ const Login = () => {
         flexDirection: "column",
         alignItems: "center",
         justifyContent: "center",
+        backgroundColor: "white", 
+        color: "black", 
       }}
     >
       <Typography variant="h4" component="h2" gutterBottom>
